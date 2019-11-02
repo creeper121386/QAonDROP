@@ -86,7 +86,7 @@ class BertDropReader(DatasetReader):
         self.number_tokenizer = number_tokenizer or WordTokenizer()
         self.max_depth = max_depth
         self.extra_numbers = extra_numbers
-        self.program = {
+        self.programs = {
             'add': lambda x,y: x+y,
             'sub': lambda x,y: x-y,
             'mul': lambda x,y: x*y,
@@ -125,8 +125,8 @@ class BertDropReader(DatasetReader):
                 wordpieces = self.tokenizer.tokenize(token.text)
                 num_wordpieces = len(wordpieces)
                 if number is not None:
-                    numbers_in_passage.append(number)       # 文章中的数字
-                    number_indices.append(curr_index)       # number在passage中的索引位置
+                    numbers_in_passage.append(number)       # numbers in passage
+                    number_indices.append(curr_index)       # index of numbers in passage
                     number_words.append(token.text)
                     number_len.append(num_wordpieces)
                 passage_tokens += wordpieces
